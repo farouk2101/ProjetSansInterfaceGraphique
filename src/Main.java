@@ -2,6 +2,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String args[]) throws IOException {
+        ShellCommande shellCommande = new ShellCommande();
         boolean fin = false;
         Map map = new Map();
         Commande  commande = new Commande(map.getJoueur());
@@ -9,6 +10,7 @@ public class Main {
 
         while(!fin) {
             commande.inviteCommande();
+            shellCommande.execute("CLS");
             map.correctionCoord();
             map.actualiserLaMap();
             map.afficherMap();

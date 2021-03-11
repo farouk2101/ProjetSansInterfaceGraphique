@@ -8,21 +8,23 @@ import java.io.InputStreamReader;
  */
 public class ShellCommande {
 
-    public ShellCommande(){
+    public ShellCommande() {
 
     }
 
-    public void execute(String commande){
-        try{
-            Process process = Runtime.getRuntime().exec(commande);
-            StringBuilder output = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while((line = reader.readLine()) != null){
-                output.append(line + "\n");
+    public void execute(String commande) throws IOException {
+        ProcessBuilder builder = new ProcessBuilder(
+                "cmd.exe", "/c", commande);
+        builder.redirectErrorStream(true);
+        Process p = builder.start();
+        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        while (true) {
+            line = r.readLine();
+            if (line == null) {
+                break;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(line);
         }
     }
 }
