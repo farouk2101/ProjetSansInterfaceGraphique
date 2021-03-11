@@ -10,7 +10,7 @@ public class Main {
 
         while(!fin) {
             commande.inviteCommande();
-            shellCommande.execute("CLS");
+            //shellCommande.execute("dir");
             map.correctionCoord();
             map.actualiserLaMap();
             map.afficherMap();
